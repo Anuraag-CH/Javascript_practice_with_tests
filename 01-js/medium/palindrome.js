@@ -7,10 +7,12 @@
 */
 
 function isPalindrome(str) {
-  if (str.length == 0) {
+  str = ignoreSpacesAndConvertToLower(str)
+
+  if (str.length == 0 || str.length == 1) {
     return true
   }
-  str = ignoreSpacesAndConvertToLower(str)
+
 
   l = Math.floor(str.length / 2)
 
@@ -28,6 +30,11 @@ function isPalindrome(str) {
 }
 
 function ignoreSpacesAndConvertToLower(str) {
+  var punctuationRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+
+  // Replace punctuations with an empty string
+  str = str.replace(punctuationRegex, "");
+
   // Remove spaces
   const stringWithoutSpaces = str.replace(/ /g, '');
 
